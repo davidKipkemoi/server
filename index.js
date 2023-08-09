@@ -1,11 +1,11 @@
 const express = require('express')
 const http = require('http')
-const { Socket } = require('socket.io')
 const Server = require('socket.io').Server
-const PORT = 6005
 const app = express()
-const path = require('path')
 const server = http.createServer(app)
+const PORT = 6005
+const path = require('path')
+const cors = require("cors")
 const io = new Server(server,{
     cors:{
         origin:'*'
@@ -14,7 +14,6 @@ const io = new Server(server,{
 
 const _dirname =path.dirname("")
 const buildPath = path.join(_dirname,"/client/build")
-app.use(express.static(buildPath))
 
 app.get("/*", function(req, res){
 
@@ -39,6 +38,10 @@ io.on("connection", (socket)=>{
         console.log("We are disconnected")
     })
 })
+
+app.use(express.json())
+app.use(cors());
+app.use(express.static(buildPath))
 
 server.listen(PORT,()=>{
     console.log(`David's Sever is listening on port: ${PORT}`)
