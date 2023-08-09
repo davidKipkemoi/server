@@ -15,7 +15,7 @@ const io = new Server(server,{
 const _dirname =path.dirname("")
 const buildPath = path.join(_dirname,"/client/build")
 
-app.get("/*", function(req, res){
+app.get("/", function(req, res){
 
     res.sendFile(
         path.join(__dirname, "/client/build/index.html"),
