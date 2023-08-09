@@ -8,7 +8,7 @@ const path = require('path')
 const cors = require("cors")
 const io = new Server(server,{
     cors:{
-        origin:'*'
+        origin:'http://localhost:6005'
     }
 }) 
 
