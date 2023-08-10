@@ -8,14 +8,14 @@ const path = require('path')
 const cors = require("cors")
 const io = new Server(server,{
     cors:{
-        origin:'http://localhost:6005'
+        origin:'*'
     }
 }) 
 
 const _dirname =path.dirname("")
 const buildPath = path.join(_dirname,"/client/build")
 
-app.get("/", function(req, res){
+app.get("/*", function(req, res){
 
     res.sendFile(
         path.join(__dirname, "/client/build/index.html"),
